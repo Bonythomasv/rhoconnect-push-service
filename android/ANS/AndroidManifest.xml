@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.symbol.rhoconnect.pushservice"
+      android:versionCode="53"
+      android:versionName="5.3">
+      
+    <uses-sdk android:minSdkVersion="8" />
+    
+    <!-- General Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+      
+    <!-- This permission must be held by the application registering for 
+         ANS messages. It is also held by us so we can start the service
+         when USER_PRESENT or BOOT_COMPLETE broadcast Intents arrive -->
+    
+       <!-- Symbol permissions:
+    *************************************************************************************** -->
+
+    <permission
+        android:name="com.symbol.rhoconnect.pushservice.permission.REGISTER"
+        android:protectionLevel="dangerous" />
+    <uses-permission android:name="com.symbol.rhoconnect.pushservice.permission.REGISTER" />
+    
+    <!-- This permission will have to be placed in the applications <receiver> tag
+         to filter messages as coming only from this service. -->
+    <permission
+        android:name="com.symbol.rhoconnect.pushservice.permission.RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.symbol.rhoconnect.pushservice.permission.RECEIVE" />
+
+    <!-- 
+    *************************************************************************************** -->
+    
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name"
+                 android:name=".ANSApplication">
+
+    	<!-- ANS Constants -->
+    	
+    	<!-- Setting the wifi_lock to "true" will prevent wifi from turning off when the device is idle
+    	     if the device will have cellular access, this should be set to "false" to save battery -->
+    	<meta-data android:name="wifi_lock" android:value="false" />
+    	
+    	<!-- Constants for customizing HTTPS behavior -->
+    	<!--     Setting secure_ignore_cert_checks to "true" will globally disable certificate checking.
+    	         This allows deployment of ANS with self-signed certificates on devices running 
+    	         Android 2.2 and earlier. For devices 2.3 and later, self-signed certificate checks 
+    	         work if the self-signed certificate is installed on the device, so setting this
+    	         to "true" for devices running 2.3 or later is not recommended. -->
+    	<meta-data android:name="secure_ignore_cert_checks" android:value="false" />
+    	<!--     Setting secure_ignore_hostname to true will cause the ANS client service to 
+    	         skip the hostname checks on all HTTPS certificates (enable at your own risk).
+    	         If secure_ignore_cert_checks is set to "true", this flag does nothing -->
+    	<meta-data android:name="secure_ignore_hostname" android:value="false" />
+    	<!--     Should a notification be generated if the above settings are not secure. The notification
+    	         will occur each time ANS restarts -->
+    	<meta-data android:name="secure_disable_notifications" android:value="false" />
+    		
+    	<!-- Constants for customizing error/warning/info alert messages -->
+    	<!--     The "error_suffix" message gets attached to any error that originate within the
+    	         device and the ANS client service. Put something here that instructs the user
+    	         to resolve a problem with the device (probably an ANS client service re-install -->
+    	<meta-data android:name="error_suffix" android:value="see device administrator (###) ###-#### (admin@my.company.com)" />
+    	<meta-data android:name="error_vibrate" android:value="true" />
+    	<!--     The "warning_suffix" message gets attached to any errors that originate with the
+    	         server/network. Put something here that instructs the user to contact someone who can 
+    	         resolve issues with the network or the ANS server -->
+    	<meta-data android:name="warning_suffix" android:value="see system administrator (###) ###-#### (sysadmin@foo.bar)" />
+    	<meta-data android:name="warning_vibrate" android:value="false" />
+    	<!--     Should warning notifications be enabled -->
+    	<meta-data android:name="warning_disabled" android:value="false" />
+    	<!--     The "info_suffix" message gets attached to debug messages. Info messages only are
+    		     enabled if debug messages are enabled -->
+		<meta-data android:name="info_suffix" android:value="(debug message)" />
+		<meta-data android:name="info_vibrate" android:value="false" />
+    	<!--     Should info notifications be disabled in all cases -->
+    	<meta-data android:name="info_disabled" android:value="true" />
+					
+		
+		<!-- ANS client service components -->
+		
+              
+        <!-- New Symbol rebranded components -->
+
+        <!-- This is the service that ANS presents to apps for registering and unregistering
+             for the service -->
+       <service android:name=".ANSService"
+                 android:permission="com.symbol.rhoconnect.pushservice.permission.REGISTER">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.symbol.rhoconnect.pushservice.action.REGISTER" />
+                <action android:name="com.symbol.rhoconnect.pushservice.action.UNREGISTER" />
+                <action android:name="com.symbol.rhoconnect.pushservice.action.CHECK_REGISTRATION" />
+            </intent-filter>
+        </service>
+       
+        
+        <!-- This service is simply a keepalive mechanism. It is started "sticky" so the system
+             will restart it when it is killed. This keeps ANSApplication alive -->
+        <service android:name=".ANSKeepAliveService">
+        </service>
+        
+        
+        
+        <!-- This intent will wake us up and get the connection to the service established
+             each time the device boots up, when the user logs in, and when the network status
+             changes. Do we need any other filters to keep the connection awake? -->
+        <receiver android:name=".ANSReceiver" android:enabled="true" >
+        	<intent-filter>
+            	<category android:name="android.intent.category.DEFAULT" />
+            	<action android:name="android.intent.action.BOOT_COMPLETED" />
+            	<action android:name="android.intent.action.USER_PRESENT" />
+            	<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- This Activity diplays the full message send with the error/warning notifications -->
+        <activity
+            android:name=".NotificationAlert"
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action   android:name="com.symbol.rhoconnect.pushservice.action.ERROR_DIALOG" />
+                <action   android:name="com.symbol.rhoconnect.pushservice.action.WARNING_DIALOG" />
+                <action   android:name="com.symbol.rhoconnect.pushservice.action.INFO_DIALOG" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest> 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ans_constants_jar" default="ans-constants-jar">
+
+	<!-- build the constants for ANS -->
+	<target name="ans-constants-jar" depends="-compile">
+		<jar destfile="./ANSConstants.jar">
+			<fileset dir="./bin/classes" includes="**/ANSConstants.class" />
+			<fileset dir="./src"         includes="**/ANSConstants.java" />
+		</jar>
+	</target>
+	
+	<!-- crate a compile target, as Android no longer provides one -->
+	<target name="compile" depends="-compile" />
+
+	<!-- override -pre-clean so our jar file gets wiped too when the 'clean' target is chosen -->
+	<target name="-pre-clean">
+		<delete file="./ANSConstants.jar" />
+	</target>
+	
+	<!-- have our JAR file created every time the whole project is built -->
+	<target name="-post-compile" depends="ans-constants-jar" />
+
+</project>

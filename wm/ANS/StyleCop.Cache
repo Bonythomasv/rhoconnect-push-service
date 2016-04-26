@@ -1,0 +1,96 @@
+<stylecopresultscache>
+  <version>11</version>
+  <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>04/09/2012 18:03:46</timestamp>
+    <milliseconds>934</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Resources.Designer.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/16/2012 20:29:18</timestamp>
+    <milliseconds>239</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AppInfo.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:25:33</timestamp>
+    <milliseconds>82</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ClientThread.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:41:46</timestamp>
+    <milliseconds>401</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ServerThread.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:42:07</timestamp>
+    <milliseconds>505</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Application.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:42:40</timestamp>
+    <milliseconds>732</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Program.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:43:05</timestamp>
+    <milliseconds>59</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Settings.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:43:34</timestamp>
+    <milliseconds>992</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Http.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:48:26</timestamp>
+    <milliseconds>420</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-200239957">
+    <configuration>DEBUG;TRACE;WindowsCE</configuration>
+  </project>
+  <sourcecode name="ServerResponse.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/17/2012 22:08:00</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>05/17/2012 16:48:47</timestamp>
+    <milliseconds>112</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
