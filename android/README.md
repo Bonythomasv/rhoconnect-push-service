@@ -81,12 +81,12 @@ The ANS client service for Android requires parameters to be set to operate
 properly, and this is handled via settings in the AndroidManifest.xml file for
 ANS. The following blocks of ANS functionality are configurable:
 
-WiFi Lock
+**WiFi Lock**
 
 This 'wifi_lock' parameter is optional, and if enabled keeps WiFi on when the
 device is sleeping/idle. Allowable values are "true" and "false".
 
-HTTPS Security
+**HTTPS Security**
 
 Whether or not to use secure HTTPS for ANS messages is specified in the URL
 sent to ANS from the app. If HTTPS security is "on" (https:// prefix), two additional 
@@ -97,7 +97,7 @@ check respectively. These options reduce security, but make the use of
 self-signed security certificates simpler. If either of these ignore parameters
 is set to true, this setting will be applied to ALL server connections.
 
-Notification Message Customization
+**Notification Message Customization**
 
 Notification messages fall into three classes -- error, warning, and info (debug).
 Each class of message may have a custom suffix specified, which gets displayed
