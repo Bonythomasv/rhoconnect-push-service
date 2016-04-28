@@ -70,6 +70,7 @@ To generate a keystore file use below commands
 For more information about Keytool, see the documentation at: [http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html](http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html)
 
 To find alias name of your key store use below commands.
+
 	:::term
 	keytool -keystore rhoconnect_push_key.keystore -list -v
 	
